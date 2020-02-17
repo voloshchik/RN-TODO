@@ -1,18 +1,15 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View, FlatList } from "react-native";
-import  Navbar  from "./src/Navbar";
-import  AddTodo  from "./src/AddTodo";
-import  Todo  from "./src/Todo";
+import Navbar from "./src/Navbar";
+import AddTodo from "./src/AddTodo";
+import Todo from "./src/Todo";
 
 export default function App() {
   const [todos, setTodos] = useState([
-    { id: 1, title: "test" },
-    { id: 2, title: "test" },
-    { id: 3, title: "test" },
-    { id: 4, title: "test" },
-    { id: 5, title: "test" },
-    { id: 6, title: "test" },
-    { id: 7, title: "test" }
+    {
+      id: "1",
+      title: "починить поло"
+    }
   ]);
 
   const addTodo = title => {
@@ -24,6 +21,15 @@ export default function App() {
       }
     ]);
   };
+  const removeTodo = id => {
+    setTodos(prev => {
+      return prev.filter(todo => todo.id !== id);
+    });
+  };
+
+  // const removeTodo = id => {
+  //   setTodos(prev => prev.filter(todo => todo.id !== id));
+  // };
 
   return (
     <View>
@@ -34,7 +40,7 @@ export default function App() {
         <FlatList
           keyExtractor={item => item.id.toString()}
           data={todos}
-          renderItem={({ item }) => <Todo todo={item} />}
+          renderItem={({ item }) => <Todo todo={item} onRemove={removeTodo} />}
         />
       </View>
     </View>
