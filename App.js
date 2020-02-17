@@ -1,58 +1,49 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, Alert, ScrollView } from "react-native";
-import Navbar from "./src/Navbar";
-import AddTodo from "./src/AddTodo";
-import Todo from "./src/Todo";
+import { StyleSheet, Text, View, FlatList } from "react-native";
+import  Navbar  from "./src/Navbar";
+import  AddTodo  from "./src/AddTodo";
+import  Todo  from "./src/Todo";
 
 export default function App() {
   const [todos, setTodos] = useState([
-    {
-      id: "1",
-      title: " поченить поло"
-    },
-    {
-      id: "1",
-      title: " поченить поло"
-    },
-    {
-      id: "2",
-      title: " поченить поло"
-    },
-    {
-      id: "3",
-      title: " поченить поло"
-    },
-    {
-      id: "4",
-      title: " поченить поло"
-    }
+    { id: 1, title: "test" },
+    { id: 2, title: "test" },
+    { id: 3, title: "test" },
+    { id: 4, title: "test" },
+    { id: 5, title: "test" },
+    { id: 6, title: "test" },
+    { id: 7, title: "test" }
   ]);
+
   const addTodo = title => {
-    const newTodo = {
-      id: Date.now().toString(),
-      title
-    };
-    setTodos(prev => [...prev, newTodo]);
+    setTodos(prev => [
+      ...prev,
+      {
+        id: Date.now().toString(),
+        title
+      }
+    ]);
   };
+
   return (
-    <ScrollView>
+    <View>
       <Navbar title="Todo App!" />
       <View style={styles.container}>
         <AddTodo onSubmit={addTodo} />
-        <View>
-          {todos.map(todo => {
-            // Alert.alert(todo.id);
-            return <Todo todo={todo} key={todo.id} />;
-          })}
-        </View>
+
+        <FlatList
+          keyExtractor={item => item.id.toString()}
+          data={todos}
+          renderItem={({ item }) => <Todo todo={item} />}
+        />
       </View>
-    </ScrollView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: 20,
+    paddingHorizontal: 30,
     paddingVertical: 20
   }
 });

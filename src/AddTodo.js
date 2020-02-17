@@ -1,41 +1,46 @@
-import React, { useState } from "react";
-import { View, Text, StyleSheet, TextInput, Button, Alert } from "react-native";
+import React, { useState } from 'react'
+import { View, StyleSheet, TextInput, Button, Alert } from 'react-native'
 
-const AddTodo = ({ onSubmit }) => {
-  const [value, setValue] = useState("");
+ const AddTodo = ({ onSubmit }) => {
+  const [value, setValue] = useState('')
+
   const pressHandler = () => {
     if (value.trim()) {
-      onSubmit(value);
-      setValue("");
+      onSubmit(value)
+      setValue('')
     } else {
-      Alert.alert("дело не можент быть пустым");
+      Alert.alert('Название дела не может быть пустым')
     }
-  };
+  }
+
   return (
     <View style={styles.block}>
       <TextInput
         style={styles.input}
-        placeholder="Бяйго Женя"
-        onChangeText={text => setValue(text)}
+        onChangeText={setValue}
         value={value}
+        placeholder='Введите название дела...'
+        autoCorrect={false}
+        autoCapitalize='none'
       />
-      <Button title="Добавить" onPress={pressHandler} />
+      <Button title='Добавить' onPress={pressHandler} />
     </View>
-  );
-};
+  )
+}
+
 const styles = StyleSheet.create({
   block: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     marginBottom: 15
   },
   input: {
-    width: "70%",
+    width: '70%',
     padding: 10,
-    borderStyle: "solid",
-    borderBottomColor: "#3949ab",
-    borderBottomWidth: 2
+    borderStyle: 'solid',
+    borderBottomWidth: 2,
+    borderBottomColor: '#3949ab'
   }
-});
-export default AddTodo;
+})
+export default AddTodo
