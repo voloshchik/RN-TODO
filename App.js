@@ -9,9 +9,13 @@ export default function App() {
     {
       id: "1",
       title: "починить поло!!!!"
+    },
+    {
+      id: "2",
+      title: "Написать программу!!!!"
     }
   ]);
-  const [todoId, setTodiId] = useState(null);
+  const [todoId, setTodiId] = useState("2");
   const addTodo = title => {
     setTodos(prev => [
       ...prev,
