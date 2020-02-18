@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View, FlatList } from "react-native";
-import Navbar from "./src/Navbar";
-import AddTodo from "./src/AddTodo";
-import Todo from "./src/Todo";
+import Navbar from "./src/components/Navbar";
+import AddTodo from "./src/components/AddTodo";
+import Todo from "./src/components/Todo";
 
 export default function App() {
   const [todos, setTodos] = useState([
     {
       id: "1",
-      title: "починить поло"
+      title: "починить поло!!!!"
     }
   ]);
 

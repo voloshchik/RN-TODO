@@ -7,7 +7,7 @@ const Todo = ({ todo, onRemove }) => {
   };
   return (
     <TouchableOpacity
-      activeOpacity={0.5}
+      activeOpacity={0.6}
       onPress={() => {
         console.log("onPress", todo.id);
       }}
