@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
 import Navbar from "./src/components/Navbar";
 import MainScreen from "./src/screens/MainScreen";
+import TodoSreen from "./src/screens/TodoScreen";
 
 export default function App() {
   const [todos, setTodos] = useState([
@@ -10,7 +11,7 @@ export default function App() {
       title: "починить поло!!!!"
     }
   ]);
-
+  const [todoId, setTodiId] = useState(null);
   const addTodo = title => {
     setTodos(prev => [
       ...prev,
@@ -25,13 +26,16 @@ export default function App() {
       return prev.filter(todo => todo.id !== id);
     });
   };
-
+  let content = (
+    <MainScreen todos={todos} addTodo={addTodo} removeTodo={removeTodo} />
+  );
+  if (todoId) {
+    content = <TodoSreen />;
+  }
   return (
     <View>
       <Navbar title="Todo App!" />
-      <View style={styles.container}>
-        <MainScreen todos={todos} addTodo={addTodo} removeTodo={removeTodo} />
-      </View>
+      <View style={styles.container}>{content}</View>
     </View>
   );
 }
