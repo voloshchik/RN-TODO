@@ -27,10 +27,18 @@ export default function App() {
     });
   };
   let content = (
-    <MainScreen todos={todos} addTodo={addTodo} removeTodo={removeTodo} />
+    <MainScreen
+      todos={todos}
+      addTodo={addTodo}
+      removeTodo={removeTodo}
+      openTodo={id => {
+        setTodiId(id);
+      }}
+    />
   );
+  const selectTodo = todos.find(todo => todo.id === todoId);
   if (todoId) {
-    content = <TodoSreen />;
+    content = <TodoSreen goBack={() => setTodiId(null)} todo={selectTodo} />;
   }
   return (
     <View>
