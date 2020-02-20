@@ -1,12 +1,9 @@
 import React from "react";
-import { View, StyleSheet, FlatList, Text } from "react-native";
+import { View, StyleSheet, FlatList, Text, Image } from "react-native";
 import AddTodo from "../components/AddTodo";
 import Todo from "../components/Todo";
 
 const MainScreen = ({ todos, addTodo, removeTodo, openTodo }) => {
-  if (todos.length === 0) {
-    return <Text>ddddd</Text>;
-  }
   let content = (
     <FlatList
       keyExtractor={item => item.id.toString()}
@@ -16,6 +13,14 @@ const MainScreen = ({ todos, addTodo, removeTodo, openTodo }) => {
       )}
     />
   );
+  if (todos.length === 0) {
+    content = (
+      <View>
+        <Text>ssssdsds</Text>
+        <Image source={require("../../assets/no-items.png")} />
+      </View>
+    );
+  }
   return (
     <View>
       <AddTodo onSubmit={addTodo} />
