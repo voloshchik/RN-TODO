@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { StyleSheet, View, Alert } from "react-native";
 import * as Font from "expo-font";
+import { AppLoading } from "expo";
+
 import Navbar from "./src/components/Navbar";
 import MainScreen from "./src/screens/MainScreen";
 import TodoSreen from "./src/screens/TodoScreen";
@@ -11,17 +13,24 @@ async function loadAppliction() {
   });
 }
 export default function App() {
+  const [isReady, setIsReady] = useState(false);
+  const [todoId, setTodiId] = useState(null);
   const [todos, setTodos] = useState([
     {
       id: "1",
       title: "починить поло!!!!"
     }
-    // {
-    //   id: "2",
-    //   title: "Написать программу!!!!"
-    // }
   ]);
-  const [todoId, setTodiId] = useState(null);
+  if (!isReady) {
+    return (
+      <AppLoading
+        startAsync={loadAppliction}
+        onError={err => console.log(err)}
+        onFinish={setIsReady(true)}
+      />
+    );
+  }
+
   const addTodo = title => {
     setTodos(prev => [
       ...prev,
