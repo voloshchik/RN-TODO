@@ -17,7 +17,7 @@ const MainScreen = ({ todos, addTodo, removeTodo, openTodo }) => {
     content = (
       <View>
         <Text>ssssdsds</Text>
-        <Image source={require("../../assets/no-items.png")} />
+        <Image source={require('../../assets/no-items.png')} />
       </View>
     );
   }
