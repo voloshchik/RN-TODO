@@ -15,9 +15,18 @@ const MainScreen = ({ todos, addTodo, removeTodo, openTodo }) => {
   );
   if (todos.length === 0) {
     content = (
-      <View>
-        <Text>ssssdsds</Text>
-        <Image source={require('../../assets/no-items.png')} />
+      <View style={styles.imgWrep}>
+        <Image
+          style={styles.image}
+          source={require("../../assets/no-items.png")}
+        />
+        {/* <Image
+          style={{ width: 100, height: 100 }}
+          source={{
+            uri:
+              "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1200px-React-icon.svg.png"
+          }}
+        /> */}
       </View>
     );
   }
@@ -28,5 +37,17 @@ const MainScreen = ({ todos, addTodo, removeTodo, openTodo }) => {
     </View>
   );
 };
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  imgWrep: {
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 10,
+    height: 300
+  },
+  image: {
+    width: "100%",
+    height: "100%",
+    resizeMode: "contain"
+  }
+});
 export default MainScreen;
