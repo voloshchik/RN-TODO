@@ -3,12 +3,13 @@ import { View, Text, StyleSheet, Button } from "react-native";
 import { THEME } from "../theme";
 import AppCard from "../components/ui/AppCard";
 import EditModal from "../components/EditModal";
+import AppTextBold from "../components/ui/AppTextBold";
 const TodoSreen = ({ goBack, todo, onRemove, onSave }) => {
   const [modal, setModal] = useState(false);
-  const saveHandler=(title)=>{
-    onSave(todo.id,title)
-    setModal(false)
-  }
+  const saveHandler = title => {
+    onSave(todo.id, title);
+    setModal(false);
+  };
   return (
     <View>
       <EditModal
@@ -19,7 +20,7 @@ const TodoSreen = ({ goBack, todo, onRemove, onSave }) => {
       />
 
       <AppCard style={styles.card}>
-        <Text style={styles.title}>{todo.title}</Text>
+        <AppTextBold style={styles.title}>{todo.title}</AppTextBold>
         <Button title="редактировать" onPress={() => setModal(true)} />
       </AppCard>
 
