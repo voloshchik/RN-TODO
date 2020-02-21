@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet, Button } from "react-native";
 import { THEME } from "../theme";
-import AppCard from "../ui/AppCard";
+import AppCard from "../components/ui/AppCard";
 import EditModal from "../components/EditModal";
 const TodoSreen = ({ goBack, todo, onRemove, onSave }) => {
   const [modal, setModal] = useState(false);
