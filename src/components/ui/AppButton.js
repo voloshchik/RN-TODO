@@ -5,9 +5,9 @@ import { THEME } from "../../theme";
 
 const AppButton = ({ children, onPress, color = THEME.MAIN_COLOR }) => {
   return (
-    <TouchableOpacity onPress={onPress}>
+    <TouchableOpacity onPress={onPress} activeOpacity={0.7}>
       <View style={{ ...styles.button, backgroundColor: color }}>
-        <AppTextBold>{children}</AppTextBold>
+        <AppTextBold style={styles.text}>{children}</AppTextBold>
       </View>
     </TouchableOpacity>
   );
@@ -19,6 +19,9 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     alignItems: "center",
     justifyContent: "center"
+  },
+  text: {
+    color: "#fff"
   }
 });
 export default AppButton;

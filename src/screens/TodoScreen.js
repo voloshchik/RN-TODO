@@ -22,7 +22,7 @@ const TodoSreen = ({ goBack, todo, onRemove, onSave }) => {
 
       <AppCard style={styles.card}>
         <AppTextBold style={styles.title}>{todo.title}</AppTextBold>
-        <Button title="редактировать" onPress={() => setModal(true)} />
+        <AppButton onPress={() => setModal(true)}>Редактировать</AppButton>
       </AppCard>
 
       <View style={styles.buttons}>
@@ -32,12 +32,13 @@ const TodoSreen = ({ goBack, todo, onRemove, onSave }) => {
           </AppButton>
         </View>
         <View style={styles.button}>
-          <Button
-            title="Удалить"
+          <AppButton
             color={THEME.DANGER_COLOR}
             onPress={goBack}
             onPress={() => onRemove(todo.id)}
-          />
+          >
+            Удалить
+          </AppButton>
         </View>
       </View>
     </View>
