@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet, Button } from "react-native";
+import { FontAwesome, AntDesign } from "@expo/vector-icons";
 import { THEME } from "../theme";
 import AppCard from "../components/ui/AppCard";
 import EditModal from "../components/EditModal";
@@ -22,13 +23,15 @@ const TodoSreen = ({ goBack, todo, onRemove, onSave }) => {
 
       <AppCard style={styles.card}>
         <AppTextBold style={styles.title}>{todo.title}</AppTextBold>
-        <AppButton onPress={() => setModal(true)}>Редактировать</AppButton>
+        <AppButton onPress={() => setModal(true)}>
+          <FontAwesome name="edit" size={20} />
+        </AppButton>
       </AppCard>
 
       <View style={styles.buttons}>
         <View style={styles.button}>
           <AppButton onPress={goBack} color={THEME.GREY_COLOR}>
-            Назад
+          <AntDesign name="back" size={20} />
           </AppButton>
         </View>
         <View style={styles.button}>
@@ -37,7 +40,7 @@ const TodoSreen = ({ goBack, todo, onRemove, onSave }) => {
             onPress={goBack}
             onPress={() => onRemove(todo.id)}
           >
-            Удалить
+            <FontAwesome name="remove" size={20} />
           </AppButton>
         </View>
       </View>

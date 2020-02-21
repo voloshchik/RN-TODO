@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import {} from '@expo/vector-icons'
 import {
   View,
   Text,
@@ -9,6 +10,7 @@ import {
   Alert
 } from "react-native";
 import { THEME } from "../theme";
+import AppButton from "./ui/AppButton";
 
 const EditModal = ({ visible, onCansel, value, onSave }) => {
   const [title, setTitle] = useState(value);
@@ -37,12 +39,16 @@ const EditModal = ({ visible, onCansel, value, onSave }) => {
           maxLength={64}
         />
         <View style={styles.buttons}>
-          <Button
+          <AppButton onPress={onCansel} color={THEME.DANGER_COLOR}>
+            Отменить
+          </AppButton>
+          {/* <Button
             title="Отменить"
             onPress={onCansel}
             color={THEME.DANGER_COLOR}
-          />
-          <Button title="Сохранить" onPress={saveHandler} />
+          /> */}
+          <AppButton onPress={saveHandler}>Сохранить</AppButton>
+          {/* <Button title="Сохранить" onPress={saveHandler} /> */}
         </View>
       </View>
     </Modal>
