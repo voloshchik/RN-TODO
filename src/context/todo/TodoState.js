@@ -4,7 +4,7 @@ import { TodoContext } from "./todoContext";
 import { todoReducer } from "./todoReducer";
 
 const TodoState = ({ children }) => {
-  const initialtate = {
+  const initialState = {
     todos: [
       {
         id: "1",
