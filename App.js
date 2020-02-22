@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { StyleSheet, View, Alert } from "react-native";
-import * as Font from 'expo-font'
-import { AppLoading } from 'expo'
+import * as Font from "expo-font";
+import { AppLoading } from "expo";
 
 import Navbar from "./src/components/Navbar";
 import MainScreen from "./src/screens/MainScreen";
 import TodoSreen from "./src/screens/TodoScreen";
-import { THEME } from './src/theme';
+import { THEME } from "./src/theme";
 async function loadApplication() {
   await Font.loadAsync({
     "roboto-regular": require("./assets/fonts/Roboto-Regular.ttf"),
@@ -16,12 +16,7 @@ async function loadApplication() {
 export default function App() {
   const [isReady, setIsReady] = useState(false);
   const [todoId, setTodiId] = useState(null);
-  const [todos, setTodos] = useState([
-    {
-      id: "1",
-      title: "починить поло!!!!"
-    }
-  ]);
+  const [todos, setTodos] = useState([]);
   if (!isReady) {
     return (
       <AppLoading
@@ -29,7 +24,7 @@ export default function App() {
         onError={err => console.log(err)}
         onFinish={() => setIsReady(true)}
       />
-    )
+    );
   }
 
   const addTodo = title => {
@@ -106,7 +101,7 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal:THEME.PADDING_HORIZONTAL,
+    paddingHorizontal: THEME.PADDING_HORIZONTAL,
     paddingVertical: 20
   }
 });
