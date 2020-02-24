@@ -1,5 +1,4 @@
-import React from "react";
-import { View, Text } from "react-native";
+import React,{useReducer} from "react";
 import { ScreenContext } from "./screenContext";
 import { screenReducer } from "./screenReducer";
 import { CHANGE_SCREEN } from "../types";
