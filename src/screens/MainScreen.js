@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useContext } from "react";
 import {
   View,
   StyleSheet,
@@ -10,8 +10,12 @@ import {
 import AddTodo from "../components/AddTodo";
 import Todo from "../components/Todo";
 import { THEME } from "../theme";
+import { TodoContext } from '../context/todo/todoContext';
+import { ScreenContext } from '../context/screen/screenContext';
 
-const MainScreen = ({ todos, addTodo, removeTodo, openTodo }) => {
+const MainScreen = () => {
+const {todos, addTodo, removeTodo} = useContext(TodoContext)
+const {changeScreen} = useContext(ScreenContext)
   const [deviceWith, setDeviceWith] = useState(
     Dimensions.get("window").width - THEME.PADDING_HORIZONTAL * 2
   );
@@ -33,7 +37,7 @@ const MainScreen = ({ todos, addTodo, removeTodo, openTodo }) => {
         keyExtractor={item => item.id.toString()}
         data={todos}
         renderItem={({ item }) => (
-          <Todo todo={item} onRemove={removeTodo} onOpen={openTodo} />
+          <Todo todo={item} onRemove={removeTodo} onOpen={changeScreen} />
         )}
       />
     </View>
@@ -45,13 +49,7 @@ const MainScreen = ({ todos, addTodo, removeTodo, openTodo }) => {
           style={styles.image}
           source={require("../../assets/no-items.png")}
         />
-        {/* <Image
-          style={{ width: 100, height: 100 }}
-          source={{
-            uri:
-              "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1200px-React-icon.svg.png"
-          }}
-        /> */}
+       
       </View>
     );
   }

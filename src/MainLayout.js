@@ -38,10 +38,10 @@ const MainLayout = () => {
 
   let content = (
     <MainScreen
-      todos={todos}
-      addTodo={addTodo}
-      removeTodo={removeTodo}
-      openTodo={changeScreen}
+      // todos={todos}
+      // addTodo={addTodo}
+      // removeTodo={removeTodo}
+      // openTodo={changeScreen}
     />
   );
   const selectTodo = todos.find(todo => todo.id === todoId);
