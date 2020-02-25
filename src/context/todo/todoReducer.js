@@ -1,21 +1,21 @@
 import {
-    ADD_TODO,
-    REMOVE_TODO,
-    UPDATE_TODO,
-    SHOW_LOADER,
-    HIDE_LOADER,
-    SHOW_ERROR,
-    CLEAR_ERROR,
-    FETCH_TODOS
-} from '../types';
+  ADD_TODO,
+  REMOVE_TODO,
+  UPDATE_TODO,
+  SHOW_LOADER,
+  HIDE_LOADER,
+  SHOW_ERROR,
+  CLEAR_ERROR,
+  FETCH_TODOS
+} from "../types";
 
 const handlers = {
-  [ADD_TODO]: (state, { title }) => ({
+  [ADD_TODO]: (state, { title, id }) => ({
     ...state,
     todos: [
       ...state.todos,
       {
-        id: Date.now().toString(),
+        id,
         title: title
       }
     ]
@@ -36,8 +36,8 @@ const handlers = {
   [SHOW_LOADER]: state => ({ ...state, loading: true }),
   [HIDE_LOADER]: state => ({ ...state, loading: false }),
   [SHOW_ERROR]: (state, { error }) => ({ ...state, error }),
-  [CLEAR_ERROR]:state=>({...state,error:null}),
-  [FETCH_TODOS]:(state,{dotos})=>({...state,dotos}),
+  [CLEAR_ERROR]: state => ({ ...state, error: null }),
+  [FETCH_TODOS]: (state, { dotos }) => ({ ...state, dotos }),
   DEFAULT: state => state
 };
 export const todoReducer = (state, action) => {
