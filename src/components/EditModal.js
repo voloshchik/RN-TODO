@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import {} from '@expo/vector-icons'
 import {
   View,
-  Text,
+
   StyleSheet,
   TextInput,
-  Button,
+  
   Modal,
   Alert
 } from "react-native";
@@ -26,6 +26,10 @@ const EditModal = ({ visible, onCansel, value, onSave }) => {
       onSave(title);
     }
   };
+  const canselHandler=()=>{
+    setTitle(value)
+    onCansel()
+  }
   return (
     <Modal visible={visible} animationType="slide" transparent={false}>
       <View style={styles.wrapper}>
@@ -39,7 +43,7 @@ const EditModal = ({ visible, onCansel, value, onSave }) => {
           maxLength={64}
         />
         <View style={styles.buttons}>
-          <AppButton onPress={onCansel} color={THEME.DANGER_COLOR}>
+          <AppButton onPress={canselHandler} color={THEME.DANGER_COLOR}>
             Отменить
           </AppButton>
           {/* <Button
