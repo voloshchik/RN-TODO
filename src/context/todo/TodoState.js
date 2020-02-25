@@ -65,7 +65,9 @@ const TodoState = ({ children }) => {
   const showError = error => dispatch({ type: SHOW_ERROR, error });
   const clearError = () => dispatch({ type: CLEAR_ERROR });
   const fetchTodos = async () => {
+    showLoader()
     const response = await fetch(
+      
       "https://rn-todo-app-c5d40.firebaseio.com/todos.json",
       {
         method: "GET",
@@ -77,6 +79,7 @@ const TodoState = ({ children }) => {
     const todos = Object.keys(data).map(key => ({ ...data[key], id: key }));
   console.log('todos',todos)
     dispatch({ type: FETCH_TODOS, todos });
+    hideLoader()
   };
   return (
     <TodoContext.Provider

@@ -8,48 +8,12 @@ import { TodoContext } from "./context/todo/todoContext";
 import { ScreenContext } from "./context/screen/screenContext";
 
 const MainLayout = () => {
-
   const { todoId } = useContext(ScreenContext);
 
-  // const removeTodo = id => {
-  //   const todo = todos.find(t => t.id === id);
+  let content = <MainScreen />;
 
-  //   Alert.alert(
-  //     "Удаление элемента",
-  //     `Вы действительно хотите удалить дело "${todo.title}?" `,
-  //     [
-  //       {
-  //         text: "Cancel",
-  //         style: "cancel"
-  //       },
-  //       {
-  //         text: "Удалить",
-  //         onPress: () => {
-  //           setTodiId(null);
-  //           setTodos(prev => {
-  //             return prev.filter(todo => todo.id !== id);
-  //           });
-  //         }
-  //       }
-  //     ],
-  //     { cancelable: false }
-  //   );
-  // };
-
-  let content = (
-    <MainScreen
-    // todos={todos}
-    // addTodo={addTodo}
-    // removeTodo={removeTodo}
-    // openTodo={changeScreen}
-    />
-  );
-  // const selectTodo = todos.find(todo => todo.id === todoId);
-  // if (todoId) {
-  //   content = <TodoSreen />;
-  // }
   return (
-    <View>
+    <View style={styles.wrapper}>
       <Navbar title="Todo App!" />
       <View style={styles.container}>
         {todoId ? <TodoSreen /> : <MainScreen />}
@@ -60,7 +24,11 @@ const MainLayout = () => {
 const styles = StyleSheet.create({
   container: {
     paddingHorizontal: THEME.PADDING_HORIZONTAL,
-    paddingVertical: 20
+    paddingVertical: 20,
+    flex: 1
+  },
+  wrapper: {
+    flex: 1
   }
 });
 export default MainLayout;

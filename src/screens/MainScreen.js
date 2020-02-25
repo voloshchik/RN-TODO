@@ -5,9 +5,10 @@ import Todo from "../components/Todo";
 import { THEME } from "../theme";
 import { TodoContext } from "../context/todo/todoContext";
 import { ScreenContext } from "../context/screen/screenContext";
+import AppLoader from "../components/ui/AppLoader";
 
 const MainScreen = () => {
-  const { todos, addTodo, removeTodo, fetchTodos } = useContext(TodoContext);
+  const { todos, addTodo, removeTodo, fetchTodos,loading } = useContext(TodoContext);
   const { changeScreen } = useContext(ScreenContext);
   const [deviceWith, setDeviceWith] = useState(
     Dimensions.get("window").width - THEME.PADDING_HORIZONTAL * 2
@@ -19,7 +20,7 @@ const MainScreen = () => {
   useEffect(() => {
     loadTodos();
   }, []);
-  
+
   useEffect(() => {
     const update = () => {
       const width =
@@ -51,6 +52,9 @@ const MainScreen = () => {
         />
       </View>
     );
+  }
+  if(loading){
+    return <AppLoader/>
   }
   return (
     <View>
