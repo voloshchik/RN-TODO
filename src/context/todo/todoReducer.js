@@ -37,7 +37,7 @@ const handlers = {
   [HIDE_LOADER]: state => ({ ...state, loading: false }),
   [SHOW_ERROR]: (state, { error }) => ({ ...state, error }),
   [CLEAR_ERROR]: state => ({ ...state, error: null }),
-  [FETCH_TODOS]: (state, { dotos }) => ({ ...state, dotos }),
+  [FETCH_TODOS]: (state, { todos }) => ({ ...state, todos }),
   DEFAULT: state => state
 };
 export const todoReducer = (state, action) => {

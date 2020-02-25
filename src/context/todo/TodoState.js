@@ -17,7 +17,7 @@ import { ScreenContext } from "../screen/screenContext";
 const TodoState = ({ children }) => {
   const initialState = {
     todos: [],
-    todos: [],
+
     loading: false,
     error: null
   };
@@ -34,8 +34,8 @@ const TodoState = ({ children }) => {
       }
     );
     const data = await response.json();
-    console.log("Data", data);
-    dispatch({ type: ADD_TODO, title ,id:data.name});
+  
+    dispatch({ type: ADD_TODO, title, id: data.name });
   };
 
   const removeTodo = id => {
@@ -64,10 +64,31 @@ const TodoState = ({ children }) => {
   const hideLoader = () => dispatch({ type: HIDE_LOADER });
   const showError = error => dispatch({ type: SHOW_ERROR, error });
   const clearError = () => dispatch({ type: CLEAR_ERROR });
-  const fethTodos = todos => dispatch({ type: FETCH_TODOS, todos });
+  const fetchTodos = async () => {
+    const response = await fetch(
+      "https://rn-todo-app-c5d40.firebaseio.com/todos.json",
+      {
+        method: "GET",
+        headers: { "Content-Type": "application/json" }
+      }
+    );
+    const data = await response.json();
+    console.log("data", data);
+    const todos = Object.keys(data).map(key => ({ ...data[key], id: key }));
+  console.log('todos',todos)
+    dispatch({ type: FETCH_TODOS, todos });
+  };
   return (
     <TodoContext.Provider
-      value={{ todos: state.todos, addTodo, removeTodo, updateTodo }}
+      value={{
+        todos: state.todos,
+        addTodo,
+        removeTodo,
+        updateTodo,
+        fetchTodos,
+        loading: state.loading,
+        error: state.error
+      }}
     >
       {children}
     </TodoContext.Provider>
