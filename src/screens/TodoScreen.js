@@ -1,4 +1,4 @@
-import React, { useState,useContext } from "react";
+import React, { useState, useContext } from "react";
 import { View, Text, StyleSheet, Dimensions } from "react-native";
 import { FontAwesome, AntDesign } from "@expo/vector-icons";
 import { THEME } from "../theme";
@@ -13,8 +13,8 @@ const TodoSreen = () => {
   const { todos, removeTodo, updateTodo } = useContext(TodoContext);
   const [modal, setModal] = useState(false);
   const todo = todos.find(todo => todo.id === todoId);
-  const saveHandler = title => {
-    updateTodo(todo.id, title);
+  const saveHandler = async title => {
+    await updateTodo(todo.id, title);
     setModal(false);
   };
 

@@ -59,14 +59,27 @@ const TodoState = ({ children }) => {
       { cancelable: false }
     );
   };
-  const updateTodo = (id, title) => dispatch({ type: UPDATE_TODO, id, title });
+  const updateTodo = async (id, title) => {
+    clearError();
+    try {
+      await fetch(`https://rn-todo-app-c5d40.firebaseio.com/todos/${id}.json`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ title })
+      });
+      dispatch({ type: UPDATE_TODO, id, title });
+    } catch (e) {
+      showError("Что-то пошло не так...");
+      console.log("error", e);
+    }
+  };
   const showLoader = () => dispatch({ type: SHOW_LOADER });
   const hideLoader = () => dispatch({ type: HIDE_LOADER });
   const showError = error => dispatch({ type: SHOW_ERROR, error });
   const clearError = () => dispatch({ type: CLEAR_ERROR });
   const fetchTodos = async () => {
     showLoader();
-    clearError()
+    clearError();
     try {
       const response = await fetch(
         "https://rn-todo-app-c5d40.firebaseio.com/todos.json",
@@ -82,7 +95,7 @@ const TodoState = ({ children }) => {
       dispatch({ type: FETCH_TODOS, todos });
     } catch (e) {
       showError("Что-то пошло не так...");
-      console.log('error',e);
+      console.log("error", e);
     } finally {
       hideLoader();
     }
