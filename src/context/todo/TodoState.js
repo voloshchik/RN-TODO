@@ -34,7 +34,7 @@ const TodoState = ({ children }) => {
       }
     );
     const data = await response.json();
-  
+
     dispatch({ type: ADD_TODO, title, id: data.name });
   };
 
@@ -65,21 +65,27 @@ const TodoState = ({ children }) => {
   const showError = error => dispatch({ type: SHOW_ERROR, error });
   const clearError = () => dispatch({ type: CLEAR_ERROR });
   const fetchTodos = async () => {
-    showLoader()
-    const response = await fetch(
-      
-      "https://rn-todo-app-c5d40.firebaseio.com/todos.json",
-      {
-        method: "GET",
-        headers: { "Content-Type": "application/json" }
-      }
-    );
-    const data = await response.json();
-    console.log("data", data);
-    const todos = Object.keys(data).map(key => ({ ...data[key], id: key }));
-  console.log('todos',todos)
-    dispatch({ type: FETCH_TODOS, todos });
-    hideLoader()
+    showLoader();
+    clearError()
+    try {
+      const response = await fetch(
+        "https://rn-todo-app-c5d40.firebaseio.com/todos.json",
+        {
+          method: "GET",
+          headers: { "Content-Type": "application/json" }
+        }
+      );
+      const data = await response.json();
+      console.log("data", data);
+      const todos = Object.keys(data).map(key => ({ ...data[key], id: key }));
+      console.log("todos", todos);
+      dispatch({ type: FETCH_TODOS, todos });
+    } catch (e) {
+      showError("Что-то пошло не так...");
+      console.log('error',e);
+    } finally {
+      hideLoader();
+    }
   };
   return (
     <TodoContext.Provider
