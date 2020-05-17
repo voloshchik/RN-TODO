@@ -35,7 +35,7 @@ const TodoState = ({ children }) => {
     //     body: JSON.stringify({ title })
     //   }
     // );
-    // const data = await response.json();
+    // const data = await response.json();333
     try {
       const data = await Http.post(
         "https://rn-todo-app-c5d40.firebaseio.com/todos.json",
